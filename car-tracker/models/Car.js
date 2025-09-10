@@ -1,4 +1,3 @@
-// Class with describe(), updateStatus(), addNote()
 
 class Car {
     #notes = [];
@@ -19,28 +18,30 @@ class Car {
         return [...this.#notes];
     }
 
-    get Info() {
+    get info() {
         return `${this.year} ${this.make} ${this.model} [${this.status}]`;
     }
 
     set status(value) {
         const allowed = ['active', 'sold', 'inactive'];
         if (!allowed.includes(value)) {
-            throw new Error(`Invalid status': ${value}`);
+            throw new Error(`Invalid status: ${value}`);
         }
         this._status = value;
     }
 
     get status() {
-        return this.status;
+        return this._status;
     }
 
-    updateStatus(newStatus) {
-        this.status = newStatus;
-    }
+    static parse(obj) {
+        const car = new Car(obj.id, obj.make, obj.model, obj.year, obj.status);
 
-    describe() {
-        return `${this.year} ${this.make} ${this.model} [${this.status}]`;
+        if (Array.isArray(obj.notes)) {
+            obj.notes.forEach(n => car.addNote(n));
+        }
+
+        return car;
     }
 
 }
