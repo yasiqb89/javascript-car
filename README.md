@@ -63,3 +63,19 @@ Follow the prompts for each action.
 - If you manually edit `cars.json`, keep the `status` field valid.
 - To reset data, you can delete the JSON file contents and use the CLI to add fresh entries.
 
+## Project Structure
+
+```
+car-tracker/
+├── api/
+│   └── carApi.js
+├── cli/
+│   └── cliHelpers.js
+├── models/
+│   └── Car.js
+├── data/
+│   └── cars.json
+├── id-generator.js
+├── main.js
+└── README.md
+```
