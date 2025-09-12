@@ -19,7 +19,8 @@ export async function getAllCars() {
 
 
 export async function saveCars(cars) {
-    const json = JSON.stringify(cars, null, 2); // pretty formatting with 2-space indent
+    const plain = cars.map(c => (c instanceof Car ? c : Car.parse(c)));
+    const json = JSON.stringify(plain, null, 2);
     await writeFile(filePath, json, 'utf-8');
 }
 
@@ -28,4 +29,27 @@ export async function addCar(newCar) {
     const cars = await getAllCars(); // Returns array 
     cars.push(newCar);
     await saveCars(cars); // Save it agian 
+}
+
+
+export async function removeCarWithId(id) {
+    const cars = await getAllCars();
+    const filtered = cars.filter(c => c.id !== id);
+    await saveCars(filtered);
+
+}
+
+export async function statusUpdate(id, newStatus) {
+    const cars = await getAllCars();
+    const car = cars.find(c => c.id == id)
+
+    if (!car) {
+        console.log(`No car found with ID ${id}`);
+        return;
+    }
+
+    car.status = newStatus;
+    console.log("Car after update:", car.status);
+    await saveCars(cars);
+
 }

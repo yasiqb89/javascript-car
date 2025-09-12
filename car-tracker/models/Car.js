@@ -35,7 +35,8 @@ class Car {
     }
 
     static parse(obj) {
-        const car = new Car(obj.id, obj.make, obj.model, obj.year, obj.status);
+        const status = obj.status ?? obj._status ?? 'active';
+        const car = new Car(obj.id, obj.make, obj.model, obj.year, status);
 
         if (Array.isArray(obj.notes)) {
             obj.notes.forEach(n => car.addNote(n));
@@ -43,6 +44,7 @@ class Car {
 
         return car;
     }
+
 
 }
 

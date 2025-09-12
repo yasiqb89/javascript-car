@@ -1,22 +1,16 @@
 [
-    {
-        "id": 1,
-        "make": "Toyota",
-        "model": "Corolla",
-        "year": 2020,
-        "status": "active",
-        "notes": [
-            "Serviced in April"
-        ]
-    },
-    {
-        "id": 2,
-        "make": "Honda",
-        "model": "Civic",
-        "year": 2021,
-        "status": "inactive",
-        "notes": [
-            "Needs tire change"
-        ]
-    }
+  {
+    "id": 1,
+    "make": "Honda",
+    "model": "2002",
+    "year": 2025,
+    "_status": "sold"
+  },
+  {
+    "id": 2,
+    "make": "Audi",
+    "model": "2023",
+    "year": 2025,
+    "_status": "active"
+  }
 ]
