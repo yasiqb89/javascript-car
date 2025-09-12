@@ -12,5 +12,12 @@
     "model": "2023",
     "year": 2025,
     "_status": "active"
+  },
+  {
+    "id": 1,
+    "make": "Mercedes",
+    "model": "2022",
+    "year": 2023,
+    "_status": "inactive"
   }
 ]
