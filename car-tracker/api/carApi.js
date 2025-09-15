@@ -53,3 +53,12 @@ export async function statusUpdate(id, newStatus) {
     await saveCars(cars);
 
 }
+
+export async function countCarsByStatus() {
+    const cars = await getAllCars();
+
+    return cars.reduce((acc, car) => {
+        acc[car.status] = (acc[car.status] || 0) + 1; //acc["active"] = 1
+        return acc;
+    }, {});
+}

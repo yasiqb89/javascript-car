@@ -1,7 +1,7 @@
 // cli/cliHelpers.js
 import Car from '../models/Car.js';
 import idGenerator from '../id-generator.js';
-import { addCar, removeCarWithId, getAllCars, statusUpdate } from '../api/carApi.js';
+import { addCar, removeCarWithId, getAllCars, statusUpdate, countCarsByStatus } from '../api/carApi.js';
 
 // Keep one shared generator
 const idGen = idGenerator();
@@ -74,4 +74,13 @@ export async function removeCar(askQuestion) {
 
     await removeCarWithId(Number(carId));
     console.log(`Car with ID ${carId} removed (if found).`);
+}
+
+export async function showStatusCounts() {
+    const counts = await countCarsByStatus();
+
+    console.log("\nCar Status Counts:");
+    Object.entries(counts).forEach(([status, count]) => {
+        console.log(`- ${status}: ${count}`);
+    });
 }
