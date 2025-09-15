@@ -1,7 +1,7 @@
 // cli/cliHelpers.js
 import Car from '../models/Car.js';
 import idGenerator from '../id-generator.js';
-import { addCar, removeCarWithId, getAllCars, statusUpdate, countCarsByStatus } from '../api/carApi.js';
+import { addCar, removeCarWithId, getAllCars, statusUpdate, countCarsByStatus, searchCarsByMake } from '../api/carApi.js';
 
 // Keep one shared generator
 const idGen = idGenerator();
@@ -83,4 +83,17 @@ export async function showStatusCounts() {
     Object.entries(counts).forEach(([status, count]) => {
         console.log(`- ${status}: ${count}`);
     });
+}
+
+export async function searchCarCli(askQuestion) {
+    const make = await askQuestion("Enter car make to search: ");
+    const results = await searchCarsByMake(make);
+
+    if (results.length === 0) {
+        console.log(`No cars found for make: ${make}`);
+        return;
+    }
+
+    console.log(`\nCars with make '${make}':`);
+    results.forEach(car => console.log(car.info));
 }

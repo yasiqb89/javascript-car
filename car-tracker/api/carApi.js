@@ -62,3 +62,10 @@ export async function countCarsByStatus() {
         return acc;
     }, {});
 }
+
+export async function searchCarsByMake(carMake) {
+    const cars = await getAllCars();
+
+    // Normalize both sides to lowercase for case-insensitive search
+    return cars.filter(car => car.make.toLowerCase() === carMake.toLowerCase());
+}
