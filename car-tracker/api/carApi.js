@@ -69,3 +69,35 @@ export async function searchCarsByMake(carMake) {
     // Normalize both sides to lowercase for case-insensitive search
     return cars.filter(car => car.make.toLowerCase() === carMake.toLowerCase());
 }
+
+export async function updateCarDetails(id, updates) {
+    const cars = await getAllCars();
+    const car = cars.find(c => c.id === id);
+
+    if (!car) {
+        return null; // no cr with that ID
+    }
+
+    // Update only the provided fields (make, model, year, status)
+    Object.entries(updates).forEach(([key, value]) => {
+        if (value !== undefined && value !== "") {
+            car[key] = key === "year" ? Number(value) : value; // convert year to number
+        }
+    });
+
+    // for (const key in updates) {
+    //     const value = updates[key];
+
+    //     if (value !== undefined && value !== "") {
+    //         if (key === "year") {
+    //             car[key] = Number(value);  
+    //         } else {
+    //             car[key] = value;
+    //         }
+    //     }
+    // }
+
+    await saveCars(cars);
+    return cars;
+
+}
