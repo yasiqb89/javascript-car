@@ -98,6 +98,6 @@ export async function updateCarDetails(id, updates) {
     // }
 
     await saveCars(cars);
-    return cars;
+    return Car.parse(car);
 
 }

@@ -8,10 +8,10 @@
   },
   {
     "id": 2,
-    "make": "Audi",
-    "model": "2023",
-    "year": 2025,
-    "_status": "active"
+    "make": "Opel",
+    "model": "2022",
+    "year": 2024,
+    "_status": "sold"
   },
   {
     "id": 1,

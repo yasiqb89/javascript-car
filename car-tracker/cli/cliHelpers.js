@@ -123,6 +123,9 @@ export async function updateCarDetailsCli(askQuestion) {
         status: newStatus
     }
 
-    await updateCarDetails(Number(id), updates);
+    const updateCar = await updateCarDetails(Number(id), updates);
+    console.log("Car updated successfully!");
+    console.log(`Updated details: ${updateCar.info}`);
+
 
 }

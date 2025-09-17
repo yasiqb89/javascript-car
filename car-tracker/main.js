@@ -1,5 +1,5 @@
 import readline from 'readline';
-import { addCarCli, listAllCars, viewCarDetails, removeCar, updateCarStatus, showStatusCounts, searchCarCli } from './cli/cliHelpers.js';
+import { addCarCli, listAllCars, viewCarDetails, removeCar, updateCarStatus, showStatusCounts, searchCarCli, updateCarDetailsCli } from './cli/cliHelpers.js';
 
 const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
 
@@ -16,7 +16,8 @@ async function showMenu() {
     console.log('5. Update Car Status');
     console.log('6. Count cars by status');
     console.log('7. Search cars by make');
-    console.log('8. Exit');
+    console.log('8. Update car details');
+    console.log('9. Exit');
 
     const choice = await askQuestion('Choose an option: ');
 
@@ -35,7 +36,9 @@ async function showMenu() {
             break;
         case '7': await searchCarCli(askQuestion);
             break;
-        case '8': rl.close();
+        case '8': await updateCarDetailsCli(askQuestion);
+            break;
+        case '9': rl.close();
             return;
         default: console.log('Invalid option');
     }
