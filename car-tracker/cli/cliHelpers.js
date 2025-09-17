@@ -1,7 +1,7 @@
 // cli/cliHelpers.js
 import Car from '../models/Car.js';
 import idGenerator from '../id-generator.js';
-import { addCar, removeCarWithId, getAllCars, statusUpdate, countCarsByStatus, searchCarsByMake, updateCarDetails } from '../api/carApi.js';
+import { addCar, removeCarWithId, getAllCars, statusUpdate, countCarsByStatus, searchCarsByMake, updateCarDetails, saveCars } from '../api/carApi.js';
 
 // Keep one shared generator
 const idGen = idGenerator();
@@ -127,5 +127,21 @@ export async function updateCarDetailsCli(askQuestion) {
     console.log("Car updated successfully!");
     console.log(`Updated details: ${updateCar.info}`);
 
+}
+
+export async function addNotesCli(askQuestion) {
+    const id = await askQuestion('Enter car ID: ');
+    const note = await askQuestion('Enter notes for the car: ');
+    const cars = await getAllCars();
+    const car = cars.find(c => c.id === Number(id));
+
+    if (!car) {
+        console.log(`No car found with ${id}`);
+        return;
+    }
+
+    car.addNote(note);
+    await saveCars(cars);
+    console.log(`Note added for car with ID ${id}`);
 
 }

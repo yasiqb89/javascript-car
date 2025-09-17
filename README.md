@@ -27,7 +27,12 @@ When you start the app you’ll see a menu:
 2. View car details
 3. List all Cars
 4. Remove a Car
-5. Exit
+5. Update Car Status
+6. Count cars by status
+7. Search cars by make
+8. Update car details
+9. Add car notes
+10. Exit
 
 Follow the prompts for each action.
 
